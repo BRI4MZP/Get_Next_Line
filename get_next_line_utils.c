@@ -6,7 +6,7 @@
 /*   By: briveiro <briveiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 02:17:59 by briveiro          #+#    #+#             */
-/*   Updated: 2023/01/13 01:20:53 by briveiro         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:18:05 by briveiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	ft_strlen(char *s)
 char	*ft_strchr(char *s, int c)
 {
 	size_t	count;
-	size_t	len;
 
 	count = 0;
 	if (!s)
@@ -68,12 +67,13 @@ char	*ft_insert(char *s1, char *s2)
 		s1 = ft_calloc(1, sizeof(char));
 	if (!s1 || !s2)
 		return (NULL);
-	dest = ft_calloc(ft_strlen(s1) + ft_strlen(s2), sizeof(char));
+	dest = ft_calloc(ft_strlen(s1) + ft_strlen(s2) +1, sizeof(char));
 	if (!dest)
 		return (NULL);
-	while (s1[++ca] != 0)
+	while (s1[++ca])
 		dest[ca] = s1[ca];
-	while (s2[cb] != 0)
+	while (s2[cb])
 		dest[ca++] = s2[cb++];
+	free(s1);
 	return (dest);
 }
