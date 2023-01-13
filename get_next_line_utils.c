@@ -6,7 +6,7 @@
 /*   By: briveiro <briveiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 02:17:59 by briveiro          #+#    #+#             */
-/*   Updated: 2023/01/12 17:08:00 by briveiro         ###   ########.fr       */
+/*   Updated: 2023/01/13 01:20:53 by briveiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,29 @@ void	*ft_calloc(size_t count, size_t size)
 	return (ret);
 }
 
-int	ft_strlen(const char *s)
+int	ft_strlen(char *s)
 {
 	size_t	count;
 
 	count = 0;
-	while (s[count])
+	if (!s)
+		return (0);
+	while (s[count] != '\0')
 		++count;
 	return (count);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	size_t	count;
 	size_t	len;
 
-	count = -1;
-	len = ft_strlen(s);
+	count = 0;
+	if (!s)
+		return (0);
 	if ((char)c == 0)
-		return (((char *)s + len));
-	while (s[++count])
+		return (((char *)s + ft_strlen(s)));
+	while (s[count++] != '\0')
 	{
 		if (s[count] == (char)c)
 			return (((char *)s + count));
@@ -56,11 +59,11 @@ char	*ft_strchr(const char *s, int c)
 char	*ft_insert(char *s1, char *s2)
 {
 	char	*dest;
-	size_t	c1;
-	size_t	c2;
+	size_t	ca;
+	size_t	cb;
 
-	c1 = -1;
-	c2 = -1;
+	ca = -1;
+	cb = 0;
 	if (!s1)
 		s1 = ft_calloc(1, sizeof(char));
 	if (!s1 || !s2)
@@ -68,10 +71,9 @@ char	*ft_insert(char *s1, char *s2)
 	dest = ft_calloc(ft_strlen(s1) + ft_strlen(s2), sizeof(char));
 	if (!dest)
 		return (NULL);
-	while (s1[++c1])
-		dest[c1] = s1[c1];
-	while (s2[++c2])
-		dest[++c1] = s2[c2];
+	while (s1[++ca] != 0)
+		dest[ca] = s1[ca];
+	while (s2[cb] != 0)
+		dest[ca++] = s2[cb++];
 	return (dest);
 }
-
