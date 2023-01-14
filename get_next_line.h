@@ -6,7 +6,7 @@
 /*   By: briveiro <briveiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:59:39 by briveiro          #+#    #+#             */
-/*   Updated: 2023/01/13 12:03:20 by briveiro         ###   ########.fr       */
+/*   Updated: 2023/01/13 23:49:06 by briveiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 7
+#  define BUFFER_SIZE 3
 # endif
 # include <stdlib.h>
 # include <string.h>

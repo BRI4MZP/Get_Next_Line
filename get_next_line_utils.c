@@ -6,7 +6,7 @@
 /*   By: briveiro <briveiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 02:17:59 by briveiro          #+#    #+#             */
-/*   Updated: 2023/01/13 12:18:05 by briveiro         ###   ########.fr       */
+/*   Updated: 2023/01/13 23:39:39 by briveiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_calloc(size_t count, size_t size)
 
 	ret = malloc(count * size);
 	if (!ret)
-		return (0);
+		return (NULL);
 	cont = -1;
 	while (++cont < count * size)
 		((char *)ret)[cont] = 0;
@@ -70,8 +70,9 @@ char	*ft_insert(char *s1, char *s2)
 	dest = ft_calloc(ft_strlen(s1) + ft_strlen(s2) +1, sizeof(char));
 	if (!dest)
 		return (NULL);
-	while (s1[++ca])
-		dest[ca] = s1[ca];
+	if (s1)
+		while (s1[++ca])
+			dest[ca] = s1[ca];
 	while (s2[cb])
 		dest[ca++] = s2[cb++];
 	free(s1);

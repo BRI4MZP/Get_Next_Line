@@ -6,7 +6,7 @@
 /*   By: briveiro <briveiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 14:40:52 by briveiro          #+#    #+#             */
-/*   Updated: 2023/01/13 12:21:05 by briveiro         ###   ########.fr       */
+/*   Updated: 2023/01/13 23:48:06 by briveiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ static char	*ft_get_rest(char *buffer)
 	len = 0;
 	while (buffer[len] && buffer[len] != '\n')
 		len++;
+	if (!buffer[len])
+	{
+		free(buffer);
+		return (NULL);
+	}
 	if (buffer[len] == '\n' && buffer[len + 1])
 	{
 		changer = ft_calloc(ft_strlen(buffer) - len + 1, sizeof(char));
@@ -60,7 +65,7 @@ static char	*ft_get_line(char *buf)
 		count++;
 	}
 	if (buf[count] == '\n')
-		changer[count] = '\n';
+		changer[count++] = '\n';
 	return (changer);
 }
 
@@ -72,7 +77,7 @@ static char	*ft_main_read(int fd, char *buffer)
 	changer = ft_calloc(BUFFER_SIZE +1, sizeof(char));
 	if (!changer)
 		return (0);
-	reader = 1;
+	reader = 42;
 	while (!(ft_strchr(buffer, '\n')) && reader != 0)
 	{
 		reader = read(fd, changer, BUFFER_SIZE);
@@ -106,19 +111,19 @@ char	*get_next_line(int fd)
 	return (get);
 }
 
-// int	main(void)
-// {
-// 	int	fd;
+int	main(void)
+{
+	int	fd;
 
-// 	fd = open("/Users/briveiro/Documents/Cursus/repodegetn/prueba.txt", O_RDONLY);
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	return (0);
-// }
+	fd = open("/Users/briveiro/Documents/Cursus/repodegetn/prueba.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	return (0);
+}
