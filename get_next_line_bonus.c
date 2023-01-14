@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: briveiro <briveiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 14:40:52 by briveiro          #+#    #+#             */
-/*   Updated: 2023/01/14 11:49:35 by briveiro         ###   ########.fr       */
+/*   Updated: 2023/01/14 11:49:30 by briveiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,16 @@ static char	*ft_main_read(int fd, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[1024];
 	char		*get;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	buffer = ft_main_read(fd, buffer);
-	if (!buffer)
-		return (free(buffer), NULL);
-	get = ft_get_line(buffer);
-	buffer = ft_get_rest(buffer);
+	buffer[fd] = ft_main_read(fd, buffer[fd]);
+	if (!buffer[fd])
+		return (free(buffer[fd]), NULL);
+	get = ft_get_line(buffer[fd]);
+	buffer[fd] = ft_get_rest(buffer[fd]);
 	return (get);
 }
 
